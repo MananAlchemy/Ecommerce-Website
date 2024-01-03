@@ -205,3 +205,62 @@ $(document).ready(function () {
     ],
   });
 });
+
+$(document).ready(function () {
+  $("#search").on("input", function () {
+    updateDropdown($(this).val());
+  });
+
+  // Close the dropdown when clicking outside of it
+  $(document).on("click", function (event) {
+    const dropdown = $("#dropdown");
+    if (!$(event.target).is("#search") && !$(event.target).is(dropdown)) {
+      dropdown.hide();
+    }
+  });
+});
+
+function updateDropdown(searchValue) {
+  // Mocked product data (replace with your actual product data)
+  const imageData = JSON.parse(localStorage.getItem("Product_Image")) || [];
+
+  const dropdown = $("#dropdown");
+  dropdown.empty();
+
+  const matchingProducts = imageData.filter((product) =>
+    product.Description.includes(searchValue)
+  );
+
+  if (matchingProducts.length > 0) {
+    console.log("Here matching");
+    $.each(matchingProducts, function (index, product) {
+      const productElement = $("<a>", {
+        html: `<div style="display:flex; justify-content:space-between;"><div>${product.Description}</div> <div> <img src ="${product.Images[0]}" style="height:30px; width:30px"></div>`,
+        click: function () {
+          $("#search").val(product.Description);
+          dropdown.hide();
+          redirectProduct(product.Id);
+        },
+      });
+      dropdown.append(productElement);
+    });
+
+    dropdown.show();
+  } else {
+    //   console.log("manan");
+    const noMatchElement = $("<a>", {
+      text: "No products matched",
+      class: "no-match-message",
+      click: function () {
+        $("#search").val("No products matched");
+        dropdown.hide();
+      },
+    });
+    dropdown.html(noMatchElement);
+    dropdown.show();
+  }
+}
+
+function redirectProduct(Id) {
+  window.location.href = `product.html?Id=${Id}`;
+}

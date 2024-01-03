@@ -63,10 +63,11 @@
           console.log("Here matching");
           $.each(matchingProducts, function (index, product) {
             const productElement = $("<a>", {
-              text: `${product.Description}`,
+              html: `<div style="display:flex; justify-content:space-between;"><div>${product.Description}</div> <div> <img src ="${product.Images[0]}" style="height:30px; width:30px"></div>`,
               click: function () {
                 $("#search").val(product.Description);
                 dropdown.hide();
+                redirectProduct(product.Id);
               },
             });
             dropdown.append(productElement);
@@ -86,6 +87,10 @@
           dropdown.html(noMatchElement);
           dropdown.show();
         }
+      }
+
+      function redirectProduct(Id) {
+        window.location.href = `product.html?Id=${Id}`;
       }
     </script>
   </body>
