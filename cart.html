@@ -510,7 +510,7 @@
           cartBody.empty();
 
           // Iterate through products in the
-          // console.log(cartProducts);
+          console.log(cartProducts);
           cartProducts.forEach((cartProduct) => {
             const { productId, quantity } = cartProduct;
             const product = getProductDetailsById(productId);
@@ -527,7 +527,7 @@
               cartBody.append(`
           <tr>
             <td>${Description}</td>
-            <td>$${Price.toFixed(2)}</td>
+            <td>$${Price}</td>
             <td>
               <input class="quantity-input" type="number" min="1" value="${quantity}" data-product-id="${productId}">
             </td>

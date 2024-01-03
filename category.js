@@ -83,6 +83,7 @@ $(document).ready(function () {
     },
   ];
 
+  let allProducts = JSON.parse(localStorage.getItem("Product_Image")) || [];
   // Function to extract category from URL
   function getCategoryFromUrl() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -91,7 +92,10 @@ $(document).ready(function () {
 
   // Function to filter products by category
   function filterProductsByCategory(Category) {
-    return mainArray.filter((product) => product.Category === Category);
+    return allProducts.filter(
+      (product) => product.Category === Category
+      // console.log(product.Category === Category)
+    );
   }
 
   // Function to display products on the page
@@ -105,7 +109,7 @@ $(document).ready(function () {
     products.forEach((product) => {
       productList.append(
         `<div class="col-12 col-md-6 col-lg-3 ">
-        <div ><img src="${product.Path}" alt="${product.alt}" class="d-flex">
+        <div ><img src="${product.Images[0]}" class="d-flex">
         <p style="text-align:center">${product.Description}</p>
         <p style="text-align:center">${product.Price}</p>
         </div> <br> </div>`
@@ -115,15 +119,18 @@ $(document).ready(function () {
 
   // Get category from the URL
   const categoryFromUrl = getCategoryFromUrl();
+  console.log(categoryFromUrl);
 
   if (categoryFromUrl) {
     // Filter products by category
     const filteredProducts = filterProductsByCategory(categoryFromUrl);
+    console.log("Yes");
+    console.log(filteredProducts);
 
     // Display filtered products
     displayProducts(filteredProducts);
   } else {
     // Display all products if no category is specified
-    displayProducts(mainArray);
+    displayProducts(allProducts);
   }
 });

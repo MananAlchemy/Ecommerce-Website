@@ -124,6 +124,10 @@
           flex-direction: row;
         }
       }
+      .thumbnails-img{
+        height: 3rem;
+        width: 3rem;
+      }
     </style>
   </head>
   <body>
@@ -232,36 +236,17 @@
 
     <div class="container container-1">
       <div class="thumbnails">
-        <img
-          class="thumbimage"
-          src="./images/1.png"
-          onclick="showImage('./images/1.png')"
-          alt="Thumbnail 1"
-        />
-        <img
-          class="thumbimage"
-          src="./images/2.png"
-          onclick="showImage('./images/2.png')"
-          alt="Thumbnail 2"
-        />
-        <img
-          class="thumbimage"
-          src="./images/3.png"
-          onclick="showImage('./images/3.png')"
-          alt="Thumbnail 3"
-        />
         <!-- Add more thumbnails as needed -->
       </div>
 
-      <div class="main-image">
-        <img src="" id="mainImage" />
-        <!-- ./images/card-1.png -->
-      </div>
+      <div class="main-image" id="mainImage">
+        <!-- <img src="" id="mainImagem" /> -->
+               </div>
 
       <div class="product-description">
-        <h2>Product Name</h2>
+        <h2 class="product-name"></h2>
 
-        <h4>$99.99</h4>
+        <h4 class="price"></h4>
         <p style="border-bottom: 2px solid; padding-bottom: 10px;">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -406,81 +391,82 @@
   </div>
 </div>
   </body>
+  <script src="product.js"></script>
   <script>
-    const products = [
-      { id: 1, imagePath: './images/1.png', name: 'Product 1', price: '$19.99' },
-      { id: 2, imagePath: './images/2.png', name: 'Product 2', price: '$29.99' },
-      { id: 3, imagePath: './images/3.png', name: 'Product 3', price: '$39.99' },
-      // Add more products as needed
-    ];
+    // const products = [
+    //   { id: 1, imagePath: './images/1.png', name: 'Product 1', price: '$19.99' },
+    //   { id: 2, imagePath: './images/2.png', name: 'Product 2', price: '$29.99' },
+    //   { id: 3, imagePath: './images/3.png', name: 'Product 3', price: '$39.99' },
+    //   // Add more products as needed
+    // ];
 
-    function showImage(imageSrc) {
-      document.getElementById('mainImage').src = imageSrc;
-    }
+    // function showImage(imageSrc) {
+    //   document.getElementById('mainImage').src = imageSrc;
+    // }
 
-    function getProductById(id) {
-      return products.find(product => product.id === parseInt(id, 10));
-    }
+    // function getProductById(id) {
+    //   return products.find(product => product.id === parseInt(id, 10));
+    // }
 
-    function displayProduct(product) {
-      const productContainer = document.getElementById('productContainer');
+    // function displayProduct(product) {
+    //   const productContainer = document.getElementById('productContainer');
 
-      // Main Image
-      const mainImageContainer = document.createElement('div');
-      mainImageContainer.classList.add('main-image');
-      const mainImage = document.createElement('img');
-      mainImage.src = product.imagePath;
-      mainImage.alt = 'Main Image2';
-      mainImageContainer.appendChild(mainImage);
+    //   // Main Image
+    //   const mainImageContainer = document.createElement('div');
+    //   mainImageContainer.classList.add('main-image');
+    //   const mainImage = document.createElement('img');
+    //   mainImage.src = product.imagePath;
+    //   mainImage.alt = 'Main Image2';
+    //   mainImageContainer.appendChild(mainImage);
 
-      // Thumbnails
-      const thumbnailsContainer = document.createElement('div');
-      thumbnailsContainer.classList.add('thumbnails');
-      products.forEach(product => {
-        const thumbnail = document.createElement('img');
-        thumbnail.src = product.imagePath;
-        thumbnail.alt = product.name;
-        thumbnail.addEventListener('click', () => showImage(product.imagePath));
-        thumbnailsContainer.appendChild(thumbnail);
-      });
+    //   // Thumbnails
+    //   const thumbnailsContainer = document.createElement('div');
+    //   thumbnailsContainer.classList.add('thumbnails');
+    //   products.forEach(product => {
+    //     const thumbnail = document.createElement('img');
+    //     thumbnail.src = product.imagePath;
+    //     thumbnail.alt = product.name;
+    //     thumbnail.addEventListener('click', () => showImage(product.imagePath));
+    //     thumbnailsContainer.appendChild(thumbnail);
+    //   });
 
-      // Product Description
-      const productDescriptionContainer = document.createElement('div');
-      productDescriptionContainer.classList.add('product-description');
-      const productName = document.createElement('h2');
-      productName.textContent = product.name;
-      const productPrice = document.createElement('p');
-      productPrice.textContent = `Price: ${product.price}`;
-      productDescriptionContainer.appendChild(productName);
-      productDescriptionContainer.appendChild(productPrice);
+    //   // Product Description
+    //   const productDescriptionContainer = document.createElement('div');
+    //   productDescriptionContainer.classList.add('product-description');
+    //   const productName = document.createElement('h2');
+    //   productName.textContent = product.name;
+    //   const productPrice = document.createElement('p');
+    //   productPrice.textContent = `Price: ${product.price}`;
+    //   productDescriptionContainer.appendChild(productName);
+    //   productDescriptionContainer.appendChild(productPrice);
 
-      // Append elements to the container
-      productContainer.appendChild(thumbnailsContainer);
-      productContainer.appendChild(mainImageContainer);
-      productContainer.appendChild(productDescriptionContainer);
+    //   // Append elements to the container
+    //   productContainer.appendChild(thumbnailsContainer);
+    //   productContainer.appendChild(mainImageContainer);
+    //   productContainer.appendChild(productDescriptionContainer);
 
-      // Set the main image based on the image ID from the URL
-      const urlParams = new URLSearchParams(window.location.search);
-      const productId = urlParams.get('id');
-      const selectedProduct = getProductById(productId);
+    //   // Set the main image based on the image ID from the URL
+    //   const urlParams = new URLSearchParams(window.location.search);
+    //   const productId = urlParams.get('id');
+    //   const selectedProduct = getProductById(productId);
 
-      if (selectedProduct) {
-        showImage(selectedProduct.imagePath);
-      }
-    }
+    //   if (selectedProduct) {
+    //     showImage(selectedProduct.imagePath);
+    //   }
+    // }
 
-    // Load the product based on the ID from the URL
-    window.onload = function () {
-      const urlParams = new URLSearchParams(window.location.search);
-      const productId = urlParams.get('id');
-      const selectedProduct = getProductById(productId);
+    // // Load the product based on the ID from the URL
+    // window.onload = function () {
+    //   const urlParams = new URLSearchParams(window.location.search);
+    //   const productId = urlParams.get('id');
+    //   const selectedProduct = getProductById(productId);
    
-      if (selectedProduct) {
-        displayProduct(selectedProduct);
-      } else {
-        // Handle product not found
-        console.error('Product not found.');
-      }
-    };
+    //   if (selectedProduct) {
+    //     displayProduct(selectedProduct);
+    //   } else {
+    //     // Handle product not found
+    //     console.error('Product not found.');
+    //   }
+    // };
   </script>
 </html>

@@ -64,7 +64,7 @@ Product_details = [
     Price: 5500,
   },
   {
-    Id: 8,
+    Id: 9,
     Description: "Product8",
     Category: "laptop",
     Path: "/images/p9.png",
@@ -72,7 +72,7 @@ Product_details = [
     Price: 5500,
   },
   {
-    Id: 8,
+    Id: 10,
     Description: "Product8",
     Category: "laptop",
     Path: "/images/p1.png",
@@ -84,8 +84,8 @@ Product_details = [
 Cart = [];
 function cartisadded(id) {
   console.log("Came here");
-  alert("Product added to cart" + "  " + id);
-  Cart.push({ productId: id, quantity: "1" });
+  alert("Product added to cart" + "  " + 35);
+  Cart.push({ productId: 35, quantity: "1" });
   console.log(Cart);
   localStorage.setItem("Cart_products", JSON.stringify(Cart));
 }
@@ -94,16 +94,20 @@ function productpageisclicked(id) {
   Product_page.append(id);
 }
 //Product page
-localStorage.setItem("Product_page", JSON.stringify(Product_page));
+// localStorage.setItem("Product_page", JSON.stringify(Product_page));
 
-localStorage.setItem("Product_Image", JSON.stringify(Product_details));
+// localStorage.setItem("Product_Image", JSON.stringify(Product_details));
 $(document).ready(function () {
   // Retrieve image data from localStorage
   const imageData = JSON.parse(localStorage.getItem("Product_Image")) || [];
   var carousel = $("#imageCarousel");
   // Add images to the carousel
   imageData.forEach((image) => {
-    carousel.append(`<div><img src="${image.Path}" alt="${image.alt}"></div>`);
+    console.log(image.Images[0]);
+
+    image.Images.forEach((i) => {
+      carousel.append(`<div><img src="${i}"></div>`);
+    });
   });
   // Initialize Slick Carousel
   carousel.slick({

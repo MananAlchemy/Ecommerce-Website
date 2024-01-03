@@ -87,8 +87,11 @@
              <a class="nav-link" href="#">Sigup</a>
            </li>
          </ul>
-         <input style="background-color: #F5F5F5;"class="form-control mr-sm-2 w-50 ms-5"  type="text"
-           placeholder="What r you looking for ?"/>
+         <div style="display: flex; flex-direction: column;">
+         <input style="background-color: #F5F5F5;"class="form-control mr-sm-2  ms-5"  type="text"
+           placeholder="What r you looking for ?" id="search"/ >
+           <div id="dropdown" style="display: flex; flex-direction: column;"></div>
+          </div>
        </div>
        <!-- Search Bar (right-aligned) -->
        <!-- <div class="form-inline">
@@ -291,9 +294,9 @@
       <div class="col-6 col-md-4 my-3 col-lg-2" style="text-align: center;">
         
         <div class="mybutton p-5" style="display: flex; flex-direction: column; justify-content: center;">
-          <a href="categorypage.html?Category=Mobile">
+          <a href="categorypage.html?Category=Tablet">
            <img class="img-fluid" src="/images/Category-CellPhone.png" alt="phone" style="min-width: 50px;">
-           <span class="text-center">Phone</span>
+           <span class="text-center">Tablet</span>
           </a>
         </div>
       </div>
@@ -304,7 +307,7 @@
         <div class="mybutton p-5" style="display: flex; flex-direction: column; justify-content: center; text-align: center;">
           <a href="categorypage.html?Category=Electronics">
           <img class="img-fluid" src="/images/Category-Computer.png" alt="comp" style="min-width: 50px;">
-          <span class="text-center">Computer</span>
+          <span class="text-center">Electronics</span>
         </a>
 
        </div>
@@ -312,9 +315,9 @@
 
       <div class="col-6 col-md-4 my-3 col-lg-2">
         <div class="mybutton p-5" style="display: flex; flex-direction: column;justify-content: center; text-align: center;">
-          <a href="categorypage.html?Category=laptop">
+          <a href="categorypage.html?Category=Phone">
           <img class="img-fluid" src="/images/Category-Gamepad.png" alt="watch" style="min-width: 50px;">
-          <span class="text-center">Game</span>
+          <span class="text-center">Phone</span>
           </a>
 
        </div>
@@ -550,4 +553,5 @@
 
 </body>
 <script  src="script.js"></script>
+<script src="searchbar.js"></script>
 </html>
