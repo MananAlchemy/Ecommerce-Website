@@ -81,9 +81,10 @@ Product_details = [
   },
 ];
 
+console.log("Initialized Product_details:", Product_details);
 Cart = [];
 function cartisadded(id) {
-  console.log("Came here");
+  console.log("cartisadded: Adding product to cart with id:", id);
   alert("Product added to cart" + "  " + 35);
   Cart.push({ productId: 35, quantity: "1" });
   console.log(Cart);
@@ -103,7 +104,7 @@ $(document).ready(function () {
   var carousel = $("#imageCarousel");
   // Add images to the carousel
   imageData.forEach((image) => {
-    console.log(image.Images[0]);
+    console.log("ImageCarousel: Loading image for carousel:", image.Images[0]);
 
     image.Images.forEach((i) => {
       carousel.append(`<div><img src="${i}"></div>`);
@@ -161,6 +162,7 @@ function updateClock() {
 }
 
 function startClock() {
+  console.log("startClock: Clock update initiated.");
   updateClock();
   setInterval(updateClock, 1000);
 }
@@ -221,6 +223,7 @@ $(document).ready(function () {
 });
 
 function updateDropdown(searchValue) {
+  console.log("updateDropdown: Searching for products with value:", searchValue);
   // Mocked product data (replace with your actual product data)
   const imageData = JSON.parse(localStorage.getItem("Product_Image")) || [];
 
@@ -232,7 +235,7 @@ function updateDropdown(searchValue) {
   );
 
   if (matchingProducts.length > 0) {
-    console.log("Here matching");
+    console.log("updateDropdown: Found matching products:", matchingProducts);
     $.each(matchingProducts, function (index, product) {
       const productElement = $("<a>", {
         html: `<div style="display:flex; justify-content:space-between;"><div>${product.Description}</div> <div> <img src ="${product.Images[0]}" style="height:30px; width:30px"></div>`,
@@ -262,5 +265,6 @@ function updateDropdown(searchValue) {
 }
 
 function redirectProduct(Id) {
+  console.log("redirectProduct: Redirecting to product page with Id:", Id);
   window.location.href = `product.html?Id=${Id}`;
 }
