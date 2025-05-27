@@ -108,13 +108,14 @@ Product_details = [
 
 $(document).ready(function () {
   let allProducts = JSON.parse(localStorage.getItem("Product_Image")) || [];
-  console.log(allProducts);
+  console.log("admin.js: Loaded allProducts from localStorage:", allProducts);
 
   function deleteProduct(id) {
-    console.log("Product id is " + id);
+    console.log("deleteProduct: Function called with id:", id);
   }
 
   function maketable() {
+    console.log("maketable: Creating/updating products table.");
     const datatable = $("#dataTable");
     datatable.empty();
 
@@ -137,8 +138,8 @@ $(document).ready(function () {
 
   $(document).on("click", ".deleteBtn", function () {
     const indexm = $(this).data("id");
-    console.log(indexm);
-    console.log(allProducts);
+    console.log("deleteBtn click: Product ID to delete:", indexm);
+    console.log("deleteBtn click: allProducts before deletion:", allProducts);
     allProducts = allProducts.filter((product) => product.Id !== indexm);
     // console.log(Manan);
 
@@ -152,7 +153,7 @@ $(document).ready(function () {
   // Event listener for the log ID buttons
   $(document).on("click", ".EditBtn", function () {
     var productId = $(this).data("id");
-    console.log("Clicked Log ID button for product id: " + productId);
+    console.log("EditBtn click: Editing product with ID:", productId);
   });
 
   $("#showFormBtn").on("click", function () {
@@ -161,11 +162,13 @@ $(document).ready(function () {
 
   $("#addNewForm").on("submit", function (event) {
     event.preventDefault();
+    console.log("#addNewForm submit: Form submitted.");
 
     // Collect values from the form
     const description = $("#new-description").val();
     const category = $("#new-category").val();
     const price = $("#new-price").val();
+    console.log("#addNewForm submit: Collected data for new product - Description:", description, "Category:", category, "Price:", price);
     // const images = $("#new-images").val().split(",");
     // const images = [];
     // const files = $(".image-input")[0].files;
@@ -229,6 +232,7 @@ $(document).ready(function () {
 
     // Function to add new data to the array
     function addNewData() {
+      console.log("addNewData: Processing new product data.");
       // Generate a random ID
       const newId = Math.floor(Math.random() * 1000) + 1;
 
@@ -241,6 +245,7 @@ $(document).ready(function () {
         Images: images,
       };
 
+      console.log("addNewData: New product data to be added:", newData);
       allProducts.push(newData);
 
       // Update the localStorage

@@ -84,14 +84,17 @@ $(document).ready(function () {
   ];
 
   let allProducts = JSON.parse(localStorage.getItem("Product_Image")) || [];
+  console.log("category.js: Loaded allProducts from localStorage:", allProducts);
   // Function to extract category from URL
   function getCategoryFromUrl() {
+    console.log("getCategoryFromUrl: Attempting to retrieve category from URL.");
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get("Category");
   }
 
   // Function to filter products by category
   function filterProductsByCategory(Category) {
+    console.log("filterProductsByCategory: Filtering products for category:", Category);
     return allProducts.filter(
       (product) => product.Category === Category
       // console.log(product.Category === Category)
@@ -100,6 +103,7 @@ $(document).ready(function () {
 
   // Function to display products on the page
   function displayProducts(products) {
+    console.log("displayProducts: Displaying", products.length, "products:", products);
     const productList = $("#product-list");
 
     // Clear existing content
@@ -119,18 +123,19 @@ $(document).ready(function () {
 
   // Get category from the URL
   const categoryFromUrl = getCategoryFromUrl();
-  console.log(categoryFromUrl);
+  console.log("getCategoryFromUrl: Category from URL:", categoryFromUrl);
 
   if (categoryFromUrl) {
     // Filter products by category
     const filteredProducts = filterProductsByCategory(categoryFromUrl);
-    console.log("Yes");
-    console.log(filteredProducts);
+    console.log("category.js: Category found in URL, displaying filtered products.");
+    console.log("category.js: Filtered products:", filteredProducts);
 
     // Display filtered products
     displayProducts(filteredProducts);
   } else {
     // Display all products if no category is specified
+    console.log("category.js: No category in URL, displaying all products.");
     displayProducts(allProducts);
   }
 });
